@@ -6,12 +6,15 @@ import retrieveUser from '../controllers/retrieveUser.controller'
 import verificaUsuarioExiste from '../middlewares/verificaUsuarioExiste.middleware'
 import userSchema from '../database/schemas/user.schema'
 import schemaValidation from '../middlewares/schemaValidation.middleware'
+import authorization from '../middlewares/authorization.middleware'
+import updateAddress from '../controllers/updateAddress.controller'
 
 const userRouter = Router()
 
 userRouter.post('', schemaValidation(userSchema), createUser)
-userRouter.get('', listUser)
+userRouter.get('', authorization, listUser)
 userRouter.get('/:id', verificaUsuarioExiste, retrieveUser)
 userRouter.post('/:id/address', verificaUsuarioExiste, createAddress)
+userRouter.patch('/:id/address/:idAddress', authorization, updateAddress)
 
 export default userRouter
