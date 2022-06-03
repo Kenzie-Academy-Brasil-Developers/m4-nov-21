@@ -1,6 +1,6 @@
 import loginUserService from "../services/sessions/loginUser.service"
 
-export default async function loginUser(req, res){
+export async function loginUser(req, res){
 
     try {
         const token = await loginUserService(req.body)
@@ -10,5 +10,4 @@ export default async function loginUser(req, res){
             message: error.message
         })
     }
-
 }

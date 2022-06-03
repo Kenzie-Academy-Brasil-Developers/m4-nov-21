@@ -11,3 +11,5 @@ app.use('/login', sessionRouter)
 app.listen(3000, () => {
     console.log('Executando na porta 3000')
 })
+
+export default app

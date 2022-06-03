@@ -11,6 +11,10 @@ export default function updateAddressService(userId, addressId, data){
     const addresses = user.addresses
 
     const addressIndex = addresses.findIndex(address => address.id === addressId)
+
+    if(addressIndex === -1){
+        throw new Error("Address not found")
+    }
     
     addresses[addressIndex] = {
         ...data,
