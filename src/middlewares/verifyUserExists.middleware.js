@@ -1,6 +1,6 @@
 import users from "../database"
 
-const verificaUsuarioExiste = (req, res, next) => {
+const verifyUserExists = (req, res, next) => {
     const userId = req.params.id
     const userIndex = users.findIndex(user => user.id === userId)
 
@@ -15,4 +15,4 @@ const verificaUsuarioExiste = (req, res, next) => {
     next()
 }
 
-export default verificaUsuarioExiste
+export default verifyUserExists

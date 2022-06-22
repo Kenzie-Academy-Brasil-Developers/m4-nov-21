@@ -8,6 +8,11 @@ services:
       - 3000:3000
     environment:
       - PORT=3000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=fabio
+      - DB_PASSWORD=1234
+      - DB=demo
     depends_on:
       db:
         condition: service_healthy
@@ -29,3 +34,10 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
+    volumes:
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - postgres_demo:/var/lib/postgresql/data
+
+volumes:
+  postgres_demo:
+    driver: local

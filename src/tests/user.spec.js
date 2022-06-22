@@ -2,7 +2,7 @@ import app from '../app'
 import request from 'supertest'
 
 const user = {
-    name: "Joao",
+    nome: "Joao",
     email: "joao@email.com",
     password: "1234",
     isAdm: false
