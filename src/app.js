@@ -9,8 +9,8 @@ app.use(express.json())
 app.use('/users', userRouter)
 app.use('/login', sessionRouter)
 
-app.listen(process.env.ENV === 'test' ? 3001 : 3000, () => {
-    console.log('Executando na porta 3000')
+app.listen(process.env.PORT, () => {
+    console.log(`Executando na porta ${process.env.PORT}`)
     connectDatabase()
 })
 

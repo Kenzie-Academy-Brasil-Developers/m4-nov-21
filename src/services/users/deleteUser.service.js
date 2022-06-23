@@ -1,7 +1,21 @@
-import users from "../../database";
+import database from "../../database";
 
-export default function deleteUserService(userIndex){
-    users.splice(userIndex, 1)
+export default async function deleteUserService(userId){
+    try {
+        const res = await database.query(
+            `DELETE FROM
+                usuarios
+            WHERE
+                id = $1
+            RETURNING *;`,
+            [userId]
+        )
 
-    return true
+        if(!res.rowCount){
+            throw new Error("User not found")
+        }
+
+    } catch (error) {
+        throw new Error(error)
+    }
 }

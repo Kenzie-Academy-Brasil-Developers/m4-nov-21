@@ -14,7 +14,7 @@ export default async function createUserService(data){
                 usuarios (id, nome, email, isAdm, password)
             VALUES
                 ($1, $2, $3, $4, $5)
-            RETURNING *`,
+            RETURNING id, nome, email, isAdm`,
             [uuidv4(), data.nome, data.email, data.isAdm, hashedPassword]
         )
 

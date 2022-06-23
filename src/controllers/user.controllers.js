@@ -16,25 +16,45 @@ export async function createUser(req, res){
 
 }
 
-export function listUser(req, res){
-    const users = listUserService()
-
-    return res.json(users)
+export async function listUser(req, res){
+    try {
+        const users = await listUserService()
+    
+        return res.json(users)
+    } catch (error) {
+        return res.status(400).json({
+            message: error.message
+        })
+    }
 }
 
-export function retrieveUser(req, res){
-    const userIndex = req.userIndex
+export async function retrieveUser(req, res){
 
-    const user = retrieveUserService(userIndex)
-
-    return res.json(user)
+    try {
+        const userId = req.params.id
+    
+        const user = await retrieveUserService(userId)
+    
+        return res.json(user)
+    } catch (error) {
+        return res.status(400).json({
+            message: error.message
+        })
+    }
 }
 
-export function deleteUser(req, res){
+export async function deleteUser(req, res){
 
-    const userIndex = req.userIndex
+    try {
+        const userId = req.params.id
+    
+        await deleteUserService(userId)
+    
+        return res.status(204).send()
+    } catch (error) {
+        return res.status(400).json({
+            message: error.message
+        })
+    }
 
-    deleteUserService(userIndex)
-
-    return res.status(204).send()
 }
