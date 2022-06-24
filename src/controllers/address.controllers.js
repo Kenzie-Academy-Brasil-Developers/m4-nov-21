@@ -1,13 +1,30 @@
 import updateAddressService from "../services/addresses/updateAddress.service"
 import createAddressService from "../services/addresses/createAddress.service"
 
-export function updateAddress(req, res){
+export async function createAddress(req, res){
+
     try {
-        const userId = req.user.id
+        const address = req.body
+        const userId = req.params.id
+    
+        const user = await createAddressService(userId, address)
+    
+        return res.json(user)
+    } catch (error) {
+        return res.status(400).json({
+            message: error.message
+        })
+    }
+
+}
+
+export async function updateAddress(req, res){
+    try {
+        const userId = req.params.id
         const addressId = req.params.addressId
         const data = req.body
 
-        const address = updateAddressService(userId, addressId, data)
+        const address = await updateAddressService(userId, addressId, data)
         
         return res.json(address)
     } catch (error) {
@@ -15,13 +32,4 @@ export function updateAddress(req, res){
             message: error.message
         })
     }
-}
-
-export function createAddress(req, res){
-    const address = req.body
-    const userIndex = req.userIndex
-
-    const user = createAddressService(userIndex, address)
-
-    return res.json(user)
 }
