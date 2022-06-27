@@ -1,0 +1,11 @@
+{
+  "name": "sprint1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Kenzie-Academy-Brasil-Developers/m4-nov-21.git",
+  "author": "Fabio <fabio@kenzie.com.br>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
