@@ -1,19 +1,26 @@
-import { IUser, IUserRequest } from "../../interfaces/users"
-import { users } from "../../database"
-import { v4 as uuidv4 } from "uuid"
+import { IUserRequest } from "../../interfaces/users"
+import AppDataSource from "../../data-source"
+import { User } from "../../entities/user.entity"
+import { hash } from "bcryptjs"
 
-const createUserService = ({ adm, email, nome, password }: IUserRequest): IUser => {
-    const newUser: IUser = {
-        id: uuidv4(),
-        nome,
-        email,
+const createUserService = async ({ adm, email, nome, password }: IUserRequest): Promise<User> => {
+
+    const userRepository = AppDataSource.getRepository(User)
+
+    const hashedPassword = await hash(password, 10)
+
+    const user = userRepository.create({
         adm,
-        password,
-        createdAt: new Date(),
-        updatedAt: new Date()
-    }
-    users.push(newUser)
-    return newUser
+        email,
+        nome,
+        password: hashedPassword,
+        ativo: true
+    })
+
+    await userRepository.save(user)
+    
+    return user
+
 }
 
 export default createUserService
