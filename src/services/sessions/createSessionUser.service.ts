@@ -3,6 +3,7 @@ import { User } from "../../entities/user.entity";
 import jwt from "jsonwebtoken"
 import { compare } from "bcryptjs"
 import { IUserLogin } from "../../interfaces/users";
+import { AppError } from "../../errors/AppError";
 import "dotenv/config"
 
 const createSessionUserService = async ({email, password}: IUserLogin): Promise<string> => {
@@ -15,17 +16,17 @@ const createSessionUserService = async ({email, password}: IUserLogin): Promise<
     })
 
     if(!user){
-        throw new Error("Invalid credentials")
+        throw new AppError("Invalid credentials", 403)
     }
 
     if(!user.ativo){
-        throw new Error("User is not active")
+        throw new AppError("User is not active")
     }
 
     const passwordMatch = await compare(password, user.password)
 
     if(!passwordMatch){
-        throw new Error("Invalid credentials")
+        throw new AppError("Invalid credentials", 403)
     }
 
     const token = jwt.sign({

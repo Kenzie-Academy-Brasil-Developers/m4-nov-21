@@ -3,19 +3,10 @@ import createSessionUserService from "../services/sessions/createSessionUser.ser
 
 const createUserSessionController = async (req: Request, res: Response) => {
 
-    try {
-        const { email, password } = req.body
-        const token = await createSessionUserService({email, password})
+    const { email, password } = req.body
+    const token = await createSessionUserService({email, password})
 
-        return res.json({token})
-
-    } catch (error) {
-        if(error instanceof Error){
-            return res.status(400).json({
-                message: error.message
-            })
-        }
-    }
+    return res.json({token})
 
 }
 
