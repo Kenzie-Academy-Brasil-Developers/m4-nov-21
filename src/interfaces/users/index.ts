@@ -5,8 +5,11 @@ export interface IUserRequest {
     adm: boolean
 }
 
-export interface IUser extends IUserRequest {
+export interface IUser {
     id: string
+    nome: string
+    email: string
+    adm: boolean
     createdAt: Date
     updatedAt: Date
 }

@@ -1,9 +1,9 @@
-import { IUserRequest } from "../../interfaces/users"
+import { IUserRequest,IUser } from "../../interfaces/users"
 import AppDataSource from "../../data-source"
 import { User } from "../../entities/user.entity"
 import { hash } from "bcryptjs"
 
-const createUserService = async ({ adm, email, nome, password }: IUserRequest): Promise<User> => {
+const createUserService = async ({ adm, email, nome, password }: IUserRequest): Promise<IUser> => {
 
     const userRepository = AppDataSource.getRepository(User)
 
@@ -18,8 +18,17 @@ const createUserService = async ({ adm, email, nome, password }: IUserRequest): 
     })
 
     await userRepository.save(user)
+
+    const returnUser: IUser = {
+        id: user.id,
+        nome: user.nome,
+        email: user.email,
+        adm: user.adm,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+    }
     
-    return user
+    return returnUser
 
 }
 
