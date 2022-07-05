@@ -4,8 +4,8 @@ import createPropertyService from "../services/properties/createProperty.service
 import listPropertyService from "../services/properties/listProperty.service";
 
 const createPropertyController = async (req: Request, res: Response) => {
-    const { tamanho, valor, address }: IPropertyRequest = req.body
-    const property = await createPropertyService({tamanho, valor, address})
+    const { tamanho, valor, address, categoryId}: IPropertyRequest = req.body
+    const property = await createPropertyService({tamanho, valor, address, categoryId})
     return res.json(property)
 }
 

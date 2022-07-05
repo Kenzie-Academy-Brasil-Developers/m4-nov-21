@@ -8,7 +8,8 @@ interface IAddressRequest {
 }
 
 export interface IPropertyRequest {
-    valor: number,
-    tamanho: number,
+    valor: number
+    tamanho: number
     address: IAddressRequest
+    categoryId: string
 }

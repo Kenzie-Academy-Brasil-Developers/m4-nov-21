@@ -18,17 +18,8 @@ const createUserService = async ({ adm, email, nome, password }: IUserRequest): 
     })
 
     await userRepository.save(user)
-
-    const returnUser: IUser = {
-        id: user.id,
-        nome: user.nome,
-        email: user.email,
-        adm: user.adm,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt
-    }
     
-    return returnUser
+    return user
 
 }
 
