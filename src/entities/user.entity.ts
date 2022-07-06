@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, Unique } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, Unique, OneToMany } from "typeorm"
 import { Exclude } from "class-transformer"
+import { Schedule } from "./schedule.entity"
 
 @Entity("users")
 @Unique(["email"])
@@ -29,6 +30,9 @@ class User {
 
     @UpdateDateColumn()
     updatedAt: Date
+
+    @OneToMany(() => Schedule, schedule => schedule.user)
+    schedules: Schedule[]
 
 }
 
