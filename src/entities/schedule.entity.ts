@@ -8,8 +8,8 @@ class Schedule {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @Column({type: 'timestamp'})
-    horario_visita: Date
+    // @Column({type: 'timestamp'})
+    // horario_visita: Date
 
     @ManyToOne(() => User, {eager: true})
     user: User

@@ -19,6 +19,4 @@ app.use('/schedules', scheduleRoutes)
 
 app.use(handleAppErrorMiddeware)
 
-app.listen(3000, () => {
-    console.log("Servidor executando")
-})
+export default app
