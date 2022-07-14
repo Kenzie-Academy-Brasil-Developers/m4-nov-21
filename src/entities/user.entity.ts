@@ -25,6 +25,12 @@ class User {
     @Column()
     ativo: boolean
 
+    @Column({nullable: true})
+    token_ativacao: string
+
+    @Column({nullable: true})
+    token_reset_password: string
+
     @CreateDateColumn()
     createdAt: Date
 

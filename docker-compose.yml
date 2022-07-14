@@ -7,11 +7,10 @@ services:
     ports:
       - 3000:3000
     environment:
-      - DB_HOST=db
-      - DB_PASSWORD=1234
-      - DB=demo
-      - DB_USER=fabio
+      - DATABASE_URL=postgres://fabio:1234@db:5432/demo
       - SECRET_KEY=7792125bbce085d0b54cd64a7065aef4
+      - SMTP_USER=ensinom4@outlook.com
+      - SMTP_PASS=
     depends_on:
       db:
         condition: service_healthy

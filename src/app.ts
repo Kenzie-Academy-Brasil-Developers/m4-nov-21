@@ -7,6 +7,7 @@ import sessionRoutes from "./routes/session.routes"
 import propertyRoutes from "./routes/property.routes"
 import categoryRoutes from "./routes/category.routes"
 import scheduleRoutes from "./routes/schedule.routes"
+import emailRoutes from "./routes/email.routes"
 
 const app = express()
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use('/login', sessionRoutes)
 app.use('/properties', propertyRoutes)
 app.use('/categories', categoryRoutes)
 app.use('/schedules', scheduleRoutes)
+app.use('/email', emailRoutes)
 
 app.use(handleAppErrorMiddeware)
 
